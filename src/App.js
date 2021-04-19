@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [Quote, setQuote] = useState([{"quote":"In theory, Communism works! In theory.","character":"Homer Simpson","image":"https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FHomerSimpson.png?1497567511939","characterDirection":"Right"}]);
+  const [Quote, setQuote] = useState({"quote":"In theory, Communism works! In theory.","character":"Homer Simpson","image":"https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FHomerSimpson.png?1497567511939","characterDirection":"Right"});
 
   
 
@@ -25,7 +25,7 @@ function App() {
   return (
     
     <div className="App">
-      <QuoteCard quote {...Quote} />
+      <QuoteCard {...Quote[0]} />
       <button type="button" onClick={getQuote}>New Quote</button>
     </div>
   );
