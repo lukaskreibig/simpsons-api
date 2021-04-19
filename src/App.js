@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import QuoteCard from './components/QuoteCard'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [Quote, setQuote] = useState([{"quote":"In theory, Communism works! In theory.","character":"Homer Simpson","image":"https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FHomerSimpson.png?1497567511939","characterDirection":"Right"}]);
+
+  
+
+  const getQuote = () => {
+    axios
+      .get('https://simpsons-quotes-api.herokuapp.com/quotes')
+      .then((response) => response.data)
+      .then((data) => {
+        setQuote(data)
+      })
+    }
+
+    useEffect(getQuote, [])
+    // console.log(Quote[0].quote)
+    // console.log(Quote[0].character)
+
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuoteCard quote {...Quote} />
+      <button type="button" onClick={getQuote}>New Quote</button>
     </div>
   );
 }
